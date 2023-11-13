@@ -125,7 +125,6 @@ int main(int argc , char *argv[])
     int *pclient1 = malloc(sizeof(int));
     *pclient1 = client_sock1;
     pthread_create(&t1, NULL, handle_connection, pclient1);
-    pthread_join(t1, NULL);
 
     //obrada izabranih brojeva drugog klijenta
     pthread_t t2;
@@ -133,6 +132,7 @@ int main(int argc , char *argv[])
     *pclient2 = client_sock2;
     pthread_create(&t2, NULL, handle_connection, pclient2);
     pthread_join(t2, NULL);
+    pthread_join(t1, NULL);
 
     //DOBITNI BROJEVI
     int Result[7];
