@@ -97,8 +97,19 @@ int main(int argc , char *argv[])
     check(client_sock1 = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&addr_size),
             "Acept failed");
 
+    //SLANJE IP ADRESE
+    char client_ip[INET_ADDRSTRLEN];
+    inet_ntop(AF_INET, &(client.sin_addr), client_ip, INET_ADDRSTRLEN);
+    printf("Client(1) IP address: %s\n", client_ip);
+    //printf("Connected!\n");
+
     check(client_sock2 = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&addr_size),
              "Acept failed");
+
+    //SLANJE IP ADRESE
+    inet_ntop(AF_INET, &(client.sin_addr), client_ip, INET_ADDRSTRLEN);
+    printf("Client(2) IP address: %s\n", client_ip);
+        
     printf("Accpeted both clients\n");
 
     //start message for clients
